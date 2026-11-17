@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block content %}<div class="page-title"><p class="eyebrow">EVIDENCE & INSIGHTS</p><h1>Skill demand analysis</h1><p>Demand is weighted by the number of openings reported for each role.</p></div>
+<div class="grid two"><section class="panel"><h2>Demand by skill</h2>{% for s,n in skills %}<div class="bar-row"><span>{{ s|title }}</span><div class="bar"><i style="width:{{ [n*3,100]|min }}%"></i></div><b>{{ n }}</b></div>{% endfor %}</section>
+<section class="panel"><h2>Demand by role</h2>{% for s,n in roles %}<div class="district-row"><span>{{ s }}</span><strong>{{ n }} <small>openings</small></strong></div>{% endfor %}</section></div>
+<section class="panel"><h2>Course-to-demand alignment</h2><div class="table-wrap"><table><thead><tr><th>Course</th><th>District</th><th>Placement rate</th><th>Missing high-demand skills</th><th>Recommendation</th></tr></thead><tbody>
+{% for r in recommendations %}<tr><td><b>{{ r.course.name }}</b></td><td>{{ r.course.district }}</td><td>{{ r.placement_rate }}%</td><td>{{ r.missing|join(", ")|title if r.missing else "No major gap detected" }}</td><td><span class="pill">{{ r.status }}</span><small>{{ r.action }}</small></td></tr>{% endfor %}
+</tbody></table></div></section>{% endblock %}

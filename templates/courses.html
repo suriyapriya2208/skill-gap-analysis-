@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}<div class="page-title"><p class="eyebrow">TRAINING SUPPLY</p><h1>Course inventory</h1><p>Track course content, capacity, placement outcomes, trainers and equipment readiness.</p></div>
+<section class="panel"><h2>Add training course</h2><form method="post" class="form-grid">
+<label>Course name<input name="name" required placeholder="Course title"></label><label>Sector<select name="sector"><option>IT</option><option>Manufacturing</option><option>Energy</option><option>Services</option><option>Healthcare</option><option>Logistics</option></select></label>
+<label>District<input name="district" required placeholder="District"></label><label>Seats<input type="number" min="0" name="seats" value="30"></label>
+<label>Placements<input type="number" min="0" name="placements" value="0"></label><label>Trainer capacity<input type="number" min="0" name="trainer_capacity" value="1"></label>
+<label>Equipment status<select name="equipment_status"><option>Adequate</option><option>Needs upgrade</option><option>Insufficient</option></select></label>
+<label class="wide">Skills covered (comma-separated)<input name="skills" required placeholder="Python, SQL, Power BI"></label><button class="btn">Add course</button></form></section>
+<section class="panel"><h2>Current courses</h2><div class="table-wrap"><table><thead><tr><th>Course</th><th>District / sector</th><th>Skills covered</th><th>Seats</th><th>Placements</th><th>Trainers</th><th>Equipment</th></tr></thead><tbody>
+{% for c in courses %}<tr><td><b>{{ c.name }}</b></td><td>{{ c.district }}<small>{{ c.sector }}</small></td><td>{{ c.skills }}</td><td>{{ c.seats }}</td><td>{{ c.placements }}</td><td>{{ c.trainer_capacity }}</td><td>{{ c.equipment_status }}</td></tr>{% endfor %}
+</tbody></table></div></section>{% endblock %}

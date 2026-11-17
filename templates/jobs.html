@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}<div class="page-title"><p class="eyebrow">INDUSTRY INPUT</p><h1>Job demand signals</h1><p>Capture roles and skills from job postings, employer surveys and consultations.</p></div>
+<section class="panel"><h2>Add demand signal</h2><form method="post" class="form-grid">
+<label>Job role<input name="title" required placeholder="e.g. Data Analyst"></label><label>Employer<input name="company" required placeholder="Company name"></label>
+<label>District<input name="district" required placeholder="e.g. Chennai"></label><label>Sector<select name="sector"><option>IT</option><option>Manufacturing</option><option>Energy</option><option>Services</option><option>Healthcare</option><option>Logistics</option></select></label>
+<label>Proficiency<select name="proficiency"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></label><label>Number of openings<input type="number" min="1" name="openings" value="1"></label>
+<label class="wide">Required skills (comma-separated)<input name="skills" required placeholder="Python, SQL, communication"></label><button class="btn">Add demand signal</button></form></section>
+<section class="panel"><h2>Recorded job demand</h2><div class="table-wrap"><table><thead><tr><th>Role / employer</th><th>District</th><th>Sector</th><th>Required skills</th><th>Level</th><th>Openings</th></tr></thead><tbody>
+{% for j in jobs %}<tr><td><b>{{ j.title }}</b><small>{{ j.company }}</small></td><td>{{ j.district }}</td><td>{{ j.sector }}</td><td>{{ j.skills }}</td><td>{{ j.proficiency }}</td><td>{{ j.openings }}</td></tr>{% endfor %}
+</tbody></table></div></section>{% endblock %}

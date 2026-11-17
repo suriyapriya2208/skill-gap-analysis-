@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block content %}
+<section class="hero"><div><p class="eyebrow">WORKFORCE INTELLIGENCE PLATFORM</p><h1>Turn industry demand into<br><em>job-ready skills.</em></h1><p class="sub">A continuous feedback loop between employers, training providers and local labour markets.</p></div><div class="hero-mark">SB<span>↗</span></div></section>
+<div class="stats">
+<div class="stat"><span>Sampled job openings</span><strong>{{ openings }}</strong><small>Across active demand signals</small></div>
+<div class="stat"><span>Courses monitored</span><strong>{{ course_count }}</strong><small>Training inventory</small></div>
+<div class="stat"><span>Overall placement ratio</span><strong>{{ avg_placement }}%</strong><small>Recorded placements / seats</small></div>
+<div class="stat"><span>Employer validations</span><strong>{{ employer_count }}</strong><small>Feedback records received</small></div></div>
+<div class="grid two">
+<section class="panel"><div class="section-head"><div><p class="eyebrow">DEMAND SIGNALS</p><h2>Skills employers are asking for</h2></div><a href="/analysis">Full analysis →</a></div>
+{% for skill,count in top_skills %}<div class="bar-row"><span>{{ skill|title }}</span><div class="bar"><i style="width:{{ [count*3,100]|min }}%"></i></div><b>{{ count }}</b></div>{% endfor %}</section>
+<section class="panel"><div class="section-head"><div><p class="eyebrow">GEOGRAPHIC VIEW</p><h2>Openings by district</h2></div><a href="/district-plan">Training plan →</a></div>
+{% for district,count in top_districts %}<div class="district-row"><span>{{ district }}</span><strong>{{ count }} <small>openings</small></strong></div>{% endfor %}</section></div>
+<section class="panel"><div class="section-head"><div><p class="eyebrow">CURRICULUM ALIGNMENT</p><h2>Priority course actions</h2></div><a href="/courses">Manage courses →</a></div>
+<div class="table-wrap"><table><thead><tr><th>Course</th><th>Placement rate</th><th>Alignment status</th><th>Suggested action</th></tr></thead><tbody>
+{% for r in recommendations %}<tr><td><b>{{ r.course.name }}</b><small>{{ r.course.district }} · {{ r.course.sector }}</small></td><td>{{ r.placement_rate }}%</td><td><span class="pill">{{ r.status }}</span></td><td>{{ r.action }}</td></tr>{% endfor %}
+</tbody></table></div></section>
+{% endblock %}

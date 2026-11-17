@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SkillBridge | Labour Market Intelligence</title><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body>
+<header class="topbar"><a class="brand" href="/">SkillBridge<span>LABOUR INTELLIGENCE</span></a>
+<nav><a href="/">Overview</a><a href="/jobs">Job Demand</a><a href="/courses">Courses</a><a href="/analysis">Skill Analysis</a><a href="/employers">Employers</a><a href="/district-plan">District Plan</a><a class="export" href="/reports.csv">Export CSV ↓</a></nav></header>
+<main class="container">
+{% with messages = get_flashed_messages(with_categories=true) %}{% for category,message in messages %}<div class="flash">{{ message }}</div>{% endfor %}{% endwith %}
+{% block content %}{% endblock %}
+<footer>SkillBridge · Evidence-led workforce planning prototype · Sample data included</footer>
+</main></body></html>
